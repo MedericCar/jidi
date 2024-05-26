@@ -12,7 +12,7 @@ chats_history = {}
 
 
 def get_questions(text: str, chat_uid: str) -> str:
-    with open("prompts/questions-system-prompt.txt") as file:
+    with open("prompts/questions-system-prompt-2.txt") as file:
         questions_system_prompt = file.read()
 
     questions_system_message = ChatMessage(role="system", content=questions_system_prompt)

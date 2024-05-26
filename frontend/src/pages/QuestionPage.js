@@ -8,19 +8,15 @@ import { v4 as uuidv4 } from 'uuid';
 
 import './QuestionPage.css';
 
-const fetchQuestionFromAPI = async (index, userChoices, uuid) => {
-  const generateInputText = (index, userChoices) => {
-    if (index === 0) {
-      return `Here is the information: ${JSON.stringify(userChoices)}.\nReturn question ${index + 1} as JSON:`;
-    } else {
-      const lastQuestion = userChoices.questions[userChoices.questions.length - 1];
-      return `User picked ${JSON.stringify(lastQuestion.answers)} for the previous question.\nReturn question ${index + 1} as JSON:`;
-    }
-  };
+const fetchQuestionsFromAPI = async (userChoices, uuid) => {
+  const inputText = `Here is the information:
+City: ${userChoices.city}
+Duration: ${userChoices.durationInDays}
+Customer preferred categories: ${userChoices.preferredCategories}
+Left out categories: ${userChoices.leftOutCategories}
+Return the five questions as JSON:`;
 
   try {
-    const inputText = generateInputText(index, userChoices);
-
     const response = await fetch('http://127.0.0.1:8000/questions', {
       method: 'POST',
       headers: {
@@ -37,7 +33,7 @@ const fetchQuestionFromAPI = async (index, userChoices, uuid) => {
     console.log("API response data:", data);
     return data;
   } catch (error) {
-    console.error('Error fetching question:', error);
+    console.error('Error fetching questions:', error);
     throw error;
   }
 };
@@ -60,7 +56,7 @@ const fetchPlanningFromAPI = async (userChoices) => {
     console.log("API response data:", data);
     return data;
   } catch (error) {
-    console.error('Error fetching question:', error);
+    console.error('Error fetching plan:', error);
     throw error;
   }
 };
@@ -68,51 +64,49 @@ const fetchPlanningFromAPI = async (userChoices) => {
 const QuestionPage = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [questionData, setQuestionData] = useState(null);
+  const [questions, setQuestions] = useState([]);
   const [selectedChoices, setSelectedChoices] = useState([]);
   const { userChoices, setUserChoices } = useContext(UserChoicesContext);
   const [uuid, setUuid] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Generate a new UUID when the component mounts
     const newUuid = uuidv4();
     setUuid(newUuid);
   }, []);
 
   useEffect(() => {
-    const loadQuestion = async () => {
+    const loadQuestions = async () => {
       setLoading(true);
       console.log(userChoices);
       try {
-        const data = await fetchQuestionFromAPI(currentQuestionIndex, userChoices, uuid);
-        setQuestionData(data);
+        const data = await fetchQuestionsFromAPI(userChoices, uuid);
+        setQuestions(data);
       } catch (error) {
-        console.error('Error loading question:', error);
+        console.error('Error loading questions:', error);
       } finally {
         setLoading(false);
       }
     };
 
     if (uuid) {
-      loadQuestion();
+      loadQuestions();
     }
-  }, [currentQuestionIndex, uuid]); // Potential issue here not having userChoices
+  }, [uuid]);
 
   const handleNext = async () => {
-    // Add the current question and selected choices to the userChoices context
     setUserChoices((prevUserChoices) => ({
       ...prevUserChoices,
       questions: [
         ...(prevUserChoices.questions || []),
         {
-          question: questionData.question,
+          question: questions[currentQuestionIndex].question,
           answers: selectedChoices,
         },
       ],
     }));
 
-    if (currentQuestionIndex < 4) {
+    if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setSelectedChoices([]);
     } else {
@@ -145,11 +139,11 @@ const QuestionPage = () => {
   return (
     <div className="question-page">
       {loading && <SpinnerComponent />}
-      {!loading && questionData && (
+      {!loading && questions.length > 0 && (
         <>
           <QuestionComponent
-            question={questionData.question}
-            choices={questionData.choices}
+            question={questions[currentQuestionIndex].question}
+            choices={questions[currentQuestionIndex].choices}
             selectedChoices={selectedChoices}
             onSelectChoice={handleSelectChoice}
           />
