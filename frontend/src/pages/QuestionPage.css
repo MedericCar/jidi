@@ -1,0 +1,8 @@
+.question-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f5e8db;
+  color: black;
+}

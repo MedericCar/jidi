@@ -1,0 +1,44 @@
+.marcellus-regular {
+  font-family: "Marcellus", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+h1 {
+  font-family: "Marcellus", serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 2em;
+}
+
+h2 {
+  font-family: "Marcellus", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.7em;
+}
+
+h3 {
+  font-family: "Fira Sans Condensed", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+p, span {
+  font-family: "Fira Sans Condensed", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.2em;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+  font-family: "Marcellus", serif;
+  color: #3c3e3b;
+  background-color: #f5e8db;
+}

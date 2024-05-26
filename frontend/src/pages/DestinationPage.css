@@ -1,0 +1,33 @@
+.city-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.city-card {
+  border: 2px solid transparent;
+  padding: 20px;
+  cursor: pointer;
+  transition: border-color 0.3s;
+  border-radius: 2%;
+}
+
+.city-card h3 {
+  margin: 10px 0 5px;
+}
+
+.city-card p {
+  margin: 5px 0 0;
+}
+
+.city-card img {
+  object-fit: cover;
+}
+
+.city-card.selected {
+  border-color: rgb(53, 53, 53);
+}
+
+.city-card:hover {
+  border-color: rgb(53, 53, 53);
+}

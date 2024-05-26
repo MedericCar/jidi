@@ -1,0 +1,21 @@
+.next-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 2em;
+    cursor: pointer;
+    color: rgb(36, 36, 36);
+    border: none;
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.next-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.next-button:not(:disabled):hover {
+    color: #535353;
+}

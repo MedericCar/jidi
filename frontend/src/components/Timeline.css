@@ -1,0 +1,62 @@
+.timeline-container {
+  width: 50%;
+}
+
+.timeline {
+  position: relative;
+  padding-left: 40px;
+}
+
+.line {
+  position: absolute;
+  width: 2px;
+  background-color: rgb(0, 0, 0);
+  height: 100%;
+  left: 20px;
+  top: 0;
+}
+
+.activity {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background-color: rgba(201, 117, 77, 1);
+  border-radius: 50%;
+  position: absolute;
+  left: 16px;
+}
+
+.activity-card {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 8px;
+  border: 2px solid black;
+  margin-left: 20px;
+  width: 100%;
+
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-weight: bold;
+}
+
+.timeOfDay {
+  font-size: 14px;
+  color: gray;
+}
+
+.description {
+  font-size: 12px;
+  color: #555;
+}

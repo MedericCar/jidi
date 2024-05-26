@@ -1,0 +1,16 @@
+.day-details {
+  width: 40%;
+  padding-right: 20px;
+  text-align: left;
+}
+
+.day-details h2 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.day-details p {
+  margin: 5px 0 0;
+  font-size: 16px;
+  color: #555;
+}

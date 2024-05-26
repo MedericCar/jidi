@@ -1,0 +1,35 @@
+.question-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+
+.question {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.choices-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.choice-box {
+  border: 2px solid #000000;
+  border-radius: 8px;
+  padding: 10px 20px;
+  margin: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.choice-box:hover {
+}
+
+.choice-box.selected {
+  background-color: black;
+  color: white;
+}

@@ -1,0 +1,38 @@
+.spinner-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f5e8db;
+  z-index: 9999;
+}
+
+.spinner-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loading-spinner {
+  border: 8px solid #837a70;
+  border-top: 8px solid #1a1816;
+  border-radius: 75%;
+  width: 30px;
+  height: 30px;
+  animation: spin 1.5s linear infinite;
+}
+
+.loading-text {
+  margin-top: 10px;
+  color: #1a1816;
+  font-size: 14px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
