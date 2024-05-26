@@ -15,12 +15,12 @@ You must return the itinerary as a JSON list in the following format:
   {{
     "day": <Integer representing the index of the day in itinerary>,
     "title": <A descriptive title of the day>,
-    "description": <A few sentences (3-4) describing the day>,
+    "description": <Three to four sentences describing the day>,
     "blocks": [
       {{
         "title": <Title of the block>,
         "timeOfDay": <either "Morning", "Lunch", "Afternoon", "Evening">,
-        "description": <A few sentences (3-4) describing the block and its activities>
+        "description": <Three to four sentences describing the block and its activities>
       }},
       ...
     ],
