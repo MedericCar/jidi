@@ -64,6 +64,7 @@ const fetchPlanningFromAPI = async (userChoices) => {
 const QuestionPage = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [loadingMessage, setLoadingMessage] = useState('');
   const [questions, setQuestions] = useState([]);
   const [selectedChoices, setSelectedChoices] = useState([]);
   const { userChoices, setUserChoices } = useContext(UserChoicesContext);
@@ -78,6 +79,7 @@ const QuestionPage = () => {
   useEffect(() => {
     const loadQuestions = async () => {
       setLoading(true);
+      setLoadingMessage("Great! Just a few additional questions based on your preferences");
       console.log(userChoices);
       try {
         const data = await fetchQuestionsFromAPI(userChoices, uuid);
@@ -112,6 +114,7 @@ const QuestionPage = () => {
     } else {
       console.log("Stepping in the last call");
       setLoading(true);
+      setLoadingMessage("Perfect! Let me build your idea plan");
 
       try {
         console.log("Calling LLM");
@@ -138,7 +141,7 @@ const QuestionPage = () => {
 
   return (
     <div className="question-page">
-      {loading && <SpinnerComponent />}
+      {loading && <SpinnerComponent message={loadingMessage} />}
       {!loading && questions.length > 0 && (
         <>
           <QuestionComponent
