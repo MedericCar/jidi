@@ -33,7 +33,7 @@ function ItineraryPage() {
       <div className="content-container">
         <div className="content">
           <DayDetails title={selectedDayData.title} description={selectedDayData.description} />
-          <Timeline activities={selectedDayData.activities} />
+          <Timeline activities={selectedDayData.blocks} />
         </div>
       </div>
     </div>
